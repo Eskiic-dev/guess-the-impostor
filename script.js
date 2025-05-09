@@ -1,4 +1,3 @@
-
 let players = [];
 let selectedCategory = "";
 let chosenWord = "";
@@ -89,9 +88,7 @@ function renderCards() {
     div.onclick = function () {
       if (!div.classList.contains("revealed")) {
         div.classList.add("revealed");
-        div.innerText = player.role === "Crewmate"
-          ? `${player.name}\\nWort: ${word}`
-          : `${player.name}\\nDu bist der Impostor!`;
+        div.innerText = player.role === "Crewmate" ? word : 'Du bist der Impostor!';
       } else {
         div.classList.remove("revealed");
         div.innerText = player.name;
