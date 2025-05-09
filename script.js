@@ -24,17 +24,23 @@ function generateNameInputs() {
   container.innerHTML = "";
   for (let i = 0; i < count; i++) {
     const value = savedNames[i] || "";
-    container.innerHTML += \`<input type="text" placeholder="Spieler \${i + 1}" id="name\${i}" value="\${value}">\`;
+    container.innerHTML += `<input type="text" placeholder="Spieler ${i + 1}" id="name${i}" value="${value}">`;
   }
 }
 
 function confirmPlayers() {
+  console.log('Spiel starten gedrückt');
   const count = parseInt(document.getElementById("playerCount").value);
+  if (isNaN(count) || count < 3) {
+    alert("Bitte mindestens 3 Spieler eingeben.");
+    return;
+  }
+
   players = [];
   let namesToStore = [];
 
   for (let i = 0; i < count; i++) {
-    const name = document.getElementById(\`name\${i}\`).value || \`Spieler \${i + 1}\`;
+    const name = document.getElementById(`name${i}`).value || `Spieler ${i + 1}`;
     players.push({ name: name, role: "Crewmate" });
     namesToStore.push(name);
   }
@@ -42,6 +48,7 @@ function confirmPlayers() {
   players[Math.floor(Math.random() * players.length)].role = "Impostor";
   localStorage.setItem("players", JSON.stringify(players));
   localStorage.setItem("playerNames", JSON.stringify(namesToStore));
+  console.log('Weiterleitung zur Kategorie...');
   window.location.href = "categories.html";
 }
 
@@ -83,8 +90,8 @@ function renderCards() {
       if (!div.classList.contains("revealed")) {
         div.classList.add("revealed");
         div.innerText = player.role === "Crewmate"
-          ? \`\${player.name}\nWort: \${word}\`
-          : \`\${player.name}\nDu bist der Impostor!\`;
+          ? `${player.name}\\nWort: ${word}`
+          : `${player.name}\\nDu bist der Impostor!`;
       } else {
         div.classList.remove("revealed");
         div.innerText = player.name;
