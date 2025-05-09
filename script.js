@@ -88,7 +88,7 @@ function renderCards() {
     div.onclick = function () {
       if (!div.classList.contains("revealed")) {
         div.classList.add("revealed");
-        div.innerText = player.role === "Crewmate" ? word : 'Du bist der Impostor!';
+        div.innerText = player.role === "Crewmate" ? word : "Du bist der Impostor!";
       } else {
         div.classList.remove("revealed");
         div.innerText = player.name;
