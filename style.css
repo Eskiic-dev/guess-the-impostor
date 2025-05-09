@@ -7,24 +7,26 @@ body {
   color: #1c1c1e;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .container {
   background: #ffffff;
   border-radius: 28px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  padding: 30px;
+  padding: 30px 20px;
   width: 100%;
-  max-width: 400px;
-  text-align: center;
+  max-width: 500px;
+  box-sizing: border-box;
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 input[type="number"],
@@ -57,23 +59,34 @@ button:hover {
   background: #005ecb;
 }
 
+#cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding-bottom: 20px;
+}
+
 .player-card {
   background: #f2f2f7;
   color: #1c1c1e;
   border-radius: 20px;
-  padding: 16px;
-  margin: 10px;
+  padding: 12px;
   width: 140px;
   height: 140px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   text-align: center;
   white-space: pre-line;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
 }
 
-.revealed {
+.player-card.revealed {
   background-color: #d1f7c4;
+  transform: scale(1.03);
 }
