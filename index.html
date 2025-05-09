@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -7,15 +8,13 @@
   <title>Spiel starten</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="start-screen" onload="">
-  <div class="container" style="max-width: 100%; padding: 1rem;">
-    
-        <h1>Guess the Impostor</h1>
-        <label>Spieleranzahl:</label>
-        <input type="number" id="playerCount" min="3" max="12" value="4" onchange="generateNameInputs()" />
-        <div id="nameInputs" style="margin-top: 10px;"></div>
-        <button onclick="confirmPlayers()">Spiel starten</button>
-        
+<body class="start-screen" onload="generateNameInputs()">
+  <div class="container">
+    <h1>Guess the Impostor</h1>
+    <label for="playerCount">Spieleranzahl:</label>
+    <input type="number" id="playerCount" min="3" max="12" value="4" onchange="generateNameInputs()" />
+    <div id="nameInputs" style="margin-top: 10px;"></div>
+    <button onclick="confirmPlayers()">Spiel starten</button>
   </div>
   <script src="script.js"></script>
 </body>
