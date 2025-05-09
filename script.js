@@ -19,21 +19,29 @@ const categoryFiles = {
 function generateNameInputs() {
   const count = parseInt(document.getElementById("playerCount").value);
   const container = document.getElementById("nameInputs");
+  const savedNames = JSON.parse(localStorage.getItem("playerNames") || "[]");
+
   container.innerHTML = "";
   for (let i = 0; i < count; i++) {
-    container.innerHTML += `<input type="text" placeholder="Spieler ${i + 1}" id="name${i}">`;
+    const value = savedNames[i] || "";
+    container.innerHTML += \`<input type="text" placeholder="Spieler \${i + 1}" id="name\${i}" value="\${value}">\`;
   }
 }
 
 function confirmPlayers() {
   const count = parseInt(document.getElementById("playerCount").value);
   players = [];
+  let namesToStore = [];
+
   for (let i = 0; i < count; i++) {
-    const name = document.getElementById(`name${i}`).value || `Spieler ${i + 1}`;
+    const name = document.getElementById(\`name\${i}\`).value || \`Spieler \${i + 1}\`;
     players.push({ name: name, role: "Crewmate" });
+    namesToStore.push(name);
   }
+
   players[Math.floor(Math.random() * players.length)].role = "Impostor";
   localStorage.setItem("players", JSON.stringify(players));
+  localStorage.setItem("playerNames", JSON.stringify(namesToStore));
   window.location.href = "categories.html";
 }
 
@@ -66,7 +74,7 @@ function renderCards() {
   const word = localStorage.getItem("word");
   container.innerHTML = "";
 
-  players.forEach((player, index) => {
+  players.forEach((player) => {
     const div = document.createElement("div");
     div.className = "player-card";
     div.innerText = player.name;
@@ -75,8 +83,8 @@ function renderCards() {
       if (!div.classList.contains("revealed")) {
         div.classList.add("revealed");
         div.innerText = player.role === "Crewmate"
-          ? `${player.name}\nWort: ${word}`
-          : `${player.name}\nDu bist der Impostor!`;
+          ? \`\${player.name}\nWort: \${word}\`
+          : \`\${player.name}\nDu bist der Impostor!\`;
       } else {
         div.classList.remove("revealed");
         div.innerText = player.name;
@@ -88,6 +96,8 @@ function renderCards() {
 }
 
 function restartGame() {
-  localStorage.clear();
+  localStorage.removeItem("players");
+  localStorage.removeItem("selectedCategory");
+  localStorage.removeItem("word");
   window.location.href = "index.html";
 }
