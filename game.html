@@ -3,15 +3,17 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Spielerübersicht</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="game-screen" onload="renderCards()">
-  <div class="container">
-    <h1>Spielerkarten</h1>
-    <div id="cardsContainer" style="margin-top: 20px;"></div>
-    <button onclick="restartGame()" style="margin-top: 30px;">Neue Runde</button>
+  <div class="container" style="max-width: 100%; padding: 1rem;">
+    
+        <h1>Spielerkarten</h1>
+        <div id="cardsContainer" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;"></div>
+        <button onclick="restartGame()" style="margin-top: 20px;">Neue Runde</button>
+        
   </div>
   <script src="script.js"></script>
 </body>
