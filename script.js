@@ -30,7 +30,7 @@ function confirmPlayers() {
   players = [];
   for (let i = 0; i < count; i++) {
     const name = document.getElementById(`name${i}`).value || `Spieler ${i + 1}`;
-    players.push({ name: name, role: "Crewmate", revealed: false });
+    players.push({ name: name, role: "Crewmate" });
   }
   players[Math.floor(Math.random() * players.length)].role = "Impostor";
   localStorage.setItem("players", JSON.stringify(players));
@@ -65,21 +65,24 @@ function renderCards() {
   const players = JSON.parse(localStorage.getItem("players"));
   const word = localStorage.getItem("word");
   container.innerHTML = "";
+
   players.forEach((player, index) => {
     const div = document.createElement("div");
     div.className = "player-card";
     div.innerText = player.name;
+
     div.onclick = function () {
-      if (!player.revealed) {
-        player.revealed = true;
+      if (!div.classList.contains("revealed")) {
         div.classList.add("revealed");
-        div.innerText = player.role === "Crewmate" ? `${player.name}\nWort: ${word}` : `${player.name}\nDu bist der Impostor!`;
+        div.innerText = player.role === "Crewmate"
+          ? `${player.name}\nWort: ${word}`
+          : `${player.name}\nDu bist der Impostor!`;
       } else {
-        player.revealed = false;
         div.classList.remove("revealed");
         div.innerText = player.name;
       }
     };
+
     container.appendChild(div);
   });
 }
