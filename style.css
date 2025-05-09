@@ -75,8 +75,9 @@ button:hover {
   width: 140px;
   height: 140px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -84,6 +85,9 @@ button:hover {
   white-space: pre-line;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   transition: transform 0.2s;
+  box-sizing: border-box;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .player-card.revealed {
